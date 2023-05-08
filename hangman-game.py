@@ -16,19 +16,19 @@ def hangman():
 
     while len(required_letters) > 0:
         #letters used
-        print("You used this letters", " ".join(used_letters))
+        print("You used this letters: ", " ".join(used_letters))
         #display the word in eg (P - C K)
-        #word_list = [letter if letter in used_letters else "-" for letter in word]
+        # word_list = [letter if letter in used_letters else "-" for letter in word]
         word_list = []
-        for letter in word:
-            if letter in used_letters:
-                word_list.append(letter)
+        for required_letters in word:
+            if required_letters in used_letters:
+                word_list.append(required_letters)
             else:
                 word_list.append("-")
         print("Current word: ", " ".join(word_list))
 
         #player letter input
-        player_letter = input("input letter: ").upper()
+        player_letter = input("Input letter: ").upper()
         if player_letter in valid_letter - used_letters:
             used_letters.add(player_letter)
             if player_letter in required_letters:
@@ -39,6 +39,10 @@ def hangman():
 
         else:
             print("Invalid character. Try again.")
+        
+        if len(required_letters) == 0:
+            print("You win! The word was", word)
+            break
 
 # user_input = input("enter something:")
 # print(user_input)
@@ -46,87 +50,3 @@ if __name__ == "__main__":
     hangman()
 
 
-
-
-
-
-
-
-
-
-
-
-
-# def display_hangman(tries):
-#     stages = [  # whole body
-#                 """
-#                    --------
-#                    |      |
-#                    |      O
-#                    |     \|/
-#                    |      |
-#                    |     / \
-#                    -
-#                 """,
-#                 # head, body, both arms, and one leg
-#                 """
-#                    --------
-#                    |      |
-#                    |      O
-#                    |     \|/
-#                    |      |
-#                    |     / 
-#                    -
-#                 """,
-#                 # head, body, and both arms
-#                 """
-#                    --------
-#                    |      |
-#                    |      O
-#                    |     \|/
-#                    |      |
-#                    |      
-#                    -
-#                 """,
-#                 # head, body, and one arm
-#                 """
-#                    --------
-#                    |      |
-#                    |      O
-#                    |     \|
-#                    |      |
-#                    |     
-#                    -
-#                 """,
-#                 # head and body
-#                 """
-#                    --------
-#                    |      |
-#                    |      O
-#                    |      |
-#                    |      |
-#                    |     
-#                    -
-#                 """,
-#                 # head
-#                 """
-#                    --------
-#                    |      |
-#                    |      O
-#                    |    
-#                    |      
-#                    |     
-#                    -
-#                 """,
-#                 # initial empty state
-#                 """
-#                    --------
-#                    |      |
-#                    |      
-#                    |    
-#                    |      
-#                    |     
-#                    -
-#                 """
-#     ]
-#return stages[tries]
