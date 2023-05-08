@@ -3,9 +3,9 @@ from words import words
 import string
 
 def get_correct_word(words):
-    word =random.choice(words)
-    # while '-' in word or ' ' in word:
-    #     word = random.choice(words)
+    word = random.choice(words)
+    while "-" in word or " "in word:
+        word = random.choice(words)
     return word
 
 def hangman():
@@ -15,25 +15,26 @@ def hangman():
     used_letters = set() #guessed letters
 
     while len(required_letters) > 0:
-        #letters used
+        # display letters already used
         print("You used this letters: ", " ".join(used_letters))
         #display the word in eg (P - C K)
-        # word_list = [letter if letter in used_letters else "-" for letter in word]
         word_list = []
-        for required_letters in word:
-            if required_letters in used_letters:
-                word_list.append(required_letters)
+        for letter in word:
+            if letter in used_letters:
+                word_list.append( letter)
             else:
                 word_list.append("-")
         print("Current word: ", " ".join(word_list))
 
         #player letter input
         player_letter = input("Input letter: ").upper()
+        
         if player_letter in valid_letter - used_letters:
             used_letters.add(player_letter)
             if player_letter in required_letters:
                 required_letters.remove(player_letter)
-                
+
+         # in the case of player inputting a used letter       
         elif player_letter in used_letters:
             print("Letter already used. Try again.")
 
@@ -44,8 +45,7 @@ def hangman():
             print("You win! The word was", word)
             break
 
-# user_input = input("enter something:")
-# print(user_input)
+
 if __name__ == "__main__":
     hangman()
 
